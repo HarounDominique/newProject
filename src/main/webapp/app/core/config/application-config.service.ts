@@ -4,7 +4,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ApplicationConfigService {
-  private endpointPrefix = 'https://pickall.netlify.app/';
+  //private endpointPrefix = 'https://pickall.netlify.app/';
+  private endpointPrefix = 'https://localhost:8080/';
   private microfrontend = false;
 
   setEndpointPrefix(endpointPrefix: string): void {
