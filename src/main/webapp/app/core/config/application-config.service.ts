@@ -26,7 +26,4 @@ export class ApplicationConfigService {
     return `${this.endpointPrefix}${api}`;
   }
 
-  getEndpointPrefix(api: string, microservice?: string): string{
-    return `${this.endpointPrefix}${api}`;
-  }
 }
