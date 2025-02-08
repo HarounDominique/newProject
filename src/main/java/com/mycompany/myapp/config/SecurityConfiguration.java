@@ -101,10 +101,10 @@ public class SecurityConfiguration {
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
-        config.addAllowedOrigin("https://pickall.netlify.app"); // Permitir solo este dominio
+        config.addAllowedOrigin("*"); // Permitir solo este dominio
         config.addAllowedMethod("*"); // Permitir todos los métodos HTTP
         config.addAllowedHeader("*"); // Permitir todos los encabezados
-        source.registerCorsConfiguration("/api/**", config);
+        source.registerCorsConfiguration("*", config);
         return new CorsFilter(source);
     }
 
