@@ -29,6 +29,7 @@ import tech.jhipster.web.util.ResponseUtil;
 /**
  * REST controller for managing {@link com.mycompany.myapp.domain.Post}.
  */
+@CrossOrigin(origins = "https://localhost:9000")
 @RestController
 @RequestMapping("/api/posts")
 @Transactional
