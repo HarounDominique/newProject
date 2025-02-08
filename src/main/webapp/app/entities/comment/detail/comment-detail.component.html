@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (comment(); as commentRef) {
+      <div>
+        <h2 data-cy="commentDetailsHeading"><span jhiTranslate="newProjectApp.comment.detail.title">Comment</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ commentRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="newProjectApp.comment.content">Content</span></dt>
+          <dd>
+            <span>{{ commentRef.content }}</span>
+          </dd>
+          <dt><span jhiTranslate="newProjectApp.comment.createdDate">Created Date</span></dt>
+          <dd>
+            <span>{{ commentRef.createdDate | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="newProjectApp.comment.postComment">Post Comment</span></dt>
+          <dd>
+            @if (comment()!.postComment) {
+              <div>
+                <a [routerLink]="['/post', comment()!.postComment?.id, 'view']">{{ commentRef.postComment?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="newProjectApp.comment.userComment">User Comment</span></dt>
+          <dd>
+            <span>{{ commentRef.userComment?.login }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/comment', commentRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

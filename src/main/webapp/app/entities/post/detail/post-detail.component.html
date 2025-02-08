@@ -1,0 +1,49 @@
+<ng-container *ngIf="post as postRef">
+  <div class="d-flex justify-content-center">
+    <div class="col-8">
+      <div>
+
+        <jhi-alert-error></jhi-alert-error>
+        <jhi-alert></jhi-alert>
+
+          <!-- Título del Post en la parte superior -->
+          <div class="post-header mb-4">
+            <h2 class="post-title" data-cy="postDetailsHeading">
+              {{ postRef.title }}
+            </h2>
+          </div>
+
+          <!-- Cuerpo del post centrado con un recuadro -->
+          <div class="post-body p-4 mb-4 border rounded shadow-sm">
+            <p>{{ postRef.content }}</p>
+          </div>
+
+          <!-- Información adicional (Usuario, Fecha) al pie -->
+          <div class="post-footer text-muted text-center">
+            <small>
+              <span jhiTranslate="newProjectApp.post.createdDate">Created Date</span>:
+              {{ postRef.createdDate | formatMediumDatetime }}<br />
+              <span jhiTranslate="newProjectApp.post.userPost">Author</span>:
+              {{ postRef.userPost?.login }}
+            </small>
+          </div>
+
+        <!-- Botones de acción -->
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;
+          <span jhiTranslate="entity.action.back">Volver</span>
+        </button>
+
+        <button
+          *ngIf="isAuthor()"
+          type="button"
+          [routerLink]="['/post', postRef.id, 'edit']"
+          class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;
+          <span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+
+      </div>
+    </div>
+  </div>
+</ng-container>

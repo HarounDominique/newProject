@@ -1,0 +1,27 @@
+{
+  "newProjectApp": {
+    "comment": {
+      "home": {
+        "title": "Comments",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Crear novo Comment",
+        "createOrEditLabel": "Crear ou editar Comment",
+        "notFound": "No Comments found"
+      },
+      "created": "Un novo Comment foi creado co identificador {{ param }}",
+      "updated": "Un Comment foi actualizado co identificador {{ param }}",
+      "deleted": "Un Comment foi eliminado co identificador {{ param }}",
+      "delete": {
+        "question": "Seguro que desexa eliminar Comment {{ id }}?"
+      },
+      "detail": {
+        "title": "Comment"
+      },
+      "id": "ID",
+      "content": "Content",
+      "createdDate": "Created Date",
+      "postComment": "Post Comment",
+      "userComment": "User Comment"
+    }
+  }
+}

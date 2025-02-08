@@ -1,0 +1,27 @@
+{
+  "newProjectApp": {
+    "post": {
+      "home": {
+        "title": "Posts",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Crear novo Post",
+        "createOrEditLabel": "Crear ou editar Post",
+        "notFound": "No Posts found"
+      },
+      "created": "Un novo Post foi creado co identificador {{ param }}",
+      "updated": "Un Post foi actualizado co identificador {{ param }}",
+      "deleted": "Un Post foi eliminado co identificador {{ param }}",
+      "delete": {
+        "question": "Seguro que desexa eliminar Post {{ id }}?"
+      },
+      "detail": {
+        "title": "Post"
+      },
+      "id": "ID",
+      "title": "Title",
+      "content": "Content",
+      "createdDate": "Created Date",
+      "userPost": "User Post"
+    }
+  }
+}
