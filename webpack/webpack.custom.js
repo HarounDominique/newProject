@@ -7,7 +7,6 @@ const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const WebpackNotifierPlugin = require('webpack-notifier');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const ESLintPlugin = require('eslint-webpack-plugin');
 
 const environment = require('./environment');
 const proxyConfig = require('./proxy.conf');
@@ -22,10 +21,6 @@ module.exports = async (config, options, targetOptions) => {
   // PLUGINS
   if (config.mode === 'development') {
     config.plugins.push(
-      new ESLintPlugin({
-        configType: 'flat',
-        extensions: ['ts', 'js', 'html'],
-      }),
       new WebpackNotifierPlugin({
         title: 'New Project',
         contentImage: path.join(__dirname, 'logo-jhipster.png'),
@@ -50,11 +45,10 @@ module.exports = async (config, options, targetOptions) => {
             target: `http${tls ? 's' : ''}://localhost:${targetOptions.target === 'serve' ? '4200' : '8080'}`,
             ws: true,
             proxyOptions: {
-              changeOrigin: false, //pass the Host header to the backend unchanged  https://github.com/Browsersync/browser-sync/issues/430
+              changeOrigin: false,
             },
             proxyReq: [
               function (proxyReq) {
-                // URI that will be retrieved by the ForwardedHeaderFilter on the server side
                 proxyReq.setHeader('X-Forwarded-Host', 'localhost:9000');
                 proxyReq.setHeader('X-Forwarded-Proto', 'https');
               },
@@ -65,17 +59,9 @@ module.exports = async (config, options, targetOptions) => {
               heartbeatTimeout: 60000,
             },
           },
-          /*
-          ghostMode: { // uncomment this part to disable BrowserSync ghostMode; https://github.com/jhipster/generator-jhipster/issues/11116
-            clicks: false,
-            location: false,
-            forms: false,
-            scroll: false,
-          },
-          */
         },
         {
-          reload: targetOptions.target === 'build', // enabled for build --watch
+          reload: targetOptions.target === 'build',
         },
       ),
     );
@@ -86,7 +72,6 @@ module.exports = async (config, options, targetOptions) => {
       new BundleAnalyzerPlugin({
         analyzerMode: 'static',
         openAnalyzer: false,
-        // Webpack statistics in temporary folder
         reportFilename: '../../stats.html',
       }),
     );
@@ -94,7 +79,6 @@ module.exports = async (config, options, targetOptions) => {
 
   const patterns = [
     {
-      // https://github.com/swagger-api/swagger-ui/blob/v4.6.1/swagger-ui-dist-package/README.md
       context: require('swagger-ui-dist').getAbsoluteFSPath(),
       from: '*.{js,css,html,png}',
       to: 'swagger-ui/',
@@ -105,7 +89,6 @@ module.exports = async (config, options, targetOptions) => {
       to: 'swagger-ui/',
     },
     { from: './src/main/webapp/swagger-ui/', to: 'swagger-ui/' },
-    // jhipster-needle-add-assets-to-webpack - JHipster will add/remove third-party resources in this array
   ];
 
   if (patterns.length > 0) {
@@ -115,12 +98,7 @@ module.exports = async (config, options, targetOptions) => {
   config.plugins.push(
     new webpack.DefinePlugin({
       I18N_HASH: JSON.stringify(languagesHash.hash),
-      // APP_VERSION is passed as an environment variable from the Gradle / Maven build tasks.
       __VERSION__: JSON.stringify(environment.__VERSION__),
-      // The root URL for API calls, ending with a '/' - for example: `"https://www.jhipster.tech:8081/myservice/"`.
-      // If this URL is left empty (""), then it will be relative to the current context.
-      // If you use an API server, in `prod` mode, you will need to enable CORS
-      // (see the `jhipster.cors` common JHipster property in the `application-*.yml` configurations)
       SERVER_API_URL: JSON.stringify(environment.SERVER_API_URL),
     }),
     new MergeJsonWebpackPlugin({
@@ -131,7 +109,6 @@ module.exports = async (config, options, targetOptions) => {
           { pattern: './src/main/webapp/i18n/en/*.json', fileName: './i18n/en.json' },
           { pattern: './src/main/webapp/i18n/gl/*.json', fileName: './i18n/gl.json' },
           { pattern: './src/main/webapp/i18n/pt-pt/*.json', fileName: './i18n/pt-pt.json' },
-          // jhipster-needle-i18n-language-webpack - JHipster will add/remove languages in this array
         ],
       },
     }),
@@ -139,7 +116,6 @@ module.exports = async (config, options, targetOptions) => {
 
   config = merge(
     config,
-    // jhipster-needle-add-webpack-config - JHipster will add custom config
   );
 
   return config;
