@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * REST controller for managing the current user's account.
  */
-@CrossOrigin(origins = "https://localhost:9000")
+@CrossOrigin(origins = "https://localhost:9000,https://pickall.netlify.app")
 @RestController
 @RequestMapping("/api")
 public class AccountResource {
@@ -55,6 +55,8 @@ public class AccountResource {
      * @throws EmailAlreadyUsedException {@code 400 (Bad Request)} if the email is already used.
      * @throws LoginAlreadyUsedException {@code 400 (Bad Request)} if the login is already used.
      */
+
+    @CrossOrigin(origins = "https://localhost:9000,https://pickall.netlify.app")
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
     public void registerAccount(@Valid @RequestBody ManagedUserVM managedUserVM) {

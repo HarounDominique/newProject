@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import tech.jhipster.web.util.PaginationUtil;
 
-@CrossOrigin(origins = "https://localhost:9000")
+@CrossOrigin(origins = "https://localhost:9000,https://pickall.netlify.app")
 @RestController
 @RequestMapping("/api")
 public class PublicUserResource {
