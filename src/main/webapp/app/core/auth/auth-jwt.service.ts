@@ -22,8 +22,11 @@ export class AuthServerProvider {
   }
 
   login(credentials: Login): Observable<void> {
+    const endpoint = this.applicationConfigService.getEndpointFor('api/authenticate');
+    console.log('API Endpoint for authentication:', endpoint);  // Aquí imprimes la URL para verificar que es correcta
+
     return this.http
-      .post<JwtToken>(this.applicationConfigService.getEndpointFor('api/authenticate'), credentials)
+      .post<JwtToken>(endpoint, credentials)
       .pipe(map(response => this.authenticateSuccess(response, credentials.rememberMe)));
   }
 
@@ -38,3 +41,4 @@ export class AuthServerProvider {
     this.stateStorageService.storeAuthenticationToken(response.id_token, rememberMe);
   }
 }
+
