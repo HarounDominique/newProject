@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ApplicationConfigService {
-  private endpointPrefix = '';
+  private endpointPrefix = 'https://pickall.netlify.app/';
   private microfrontend = false;
 
   setEndpointPrefix(endpointPrefix: string): void {
@@ -23,6 +23,10 @@ export class ApplicationConfigService {
     if (microservice) {
       return `${this.endpointPrefix}services/${microservice}/${api}`;
     }
+    return `${this.endpointPrefix}${api}`;
+  }
+
+  getEndpointPrefix(api: string, microservice?: string): string{
     return `${this.endpointPrefix}${api}`;
   }
 }
