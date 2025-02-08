@@ -118,5 +118,11 @@ module.exports = async (config, options, targetOptions) => {
     config,
   );
 
+  config.output = {
+    path: path.resolve(__dirname, '../dist/new-project'), // Aquí es donde los archivos se generarán
+    filename: '[name].bundle.js',
+    publicPath: '/', // Asegúrate de que se ajusta a la estructura de tu servidor
+  };
+
   return config;
 };
