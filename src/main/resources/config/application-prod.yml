@@ -28,7 +28,7 @@ management:
 spring:
   web:
     cors:
-      allowed-origins: "https://pickall.netlify.app"
+      allowed-origins: "https://pickall.netlify.app, http://localhost:8080"
       allowed-methods: GET, POST, PUT, DELETE
   devtools:
     restart:

@@ -31,7 +31,8 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Controller to authenticate users.
  */
-@CrossOrigin(origins = "https://pickall.netlify.app")
+//@CrossOrigin(origins = "https://pickall.netlify.app")
+@CrossOrigin(origins = "https://localhost:8080")
 @RestController
 @RequestMapping("/api")
 public class AuthenticateController {
